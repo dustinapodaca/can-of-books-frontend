@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { Button } from 'react-bootstrap';
+import { Container, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import BookFormModal from './components/BookFormModal';
 import BookCarousel from './components/BookCarousel';
@@ -51,14 +51,15 @@ class BestBooks extends React.Component {
   
   deleteBook = async (bookToDelete) => {
     try {
-      const response = await axios.delete(`${process.env.REACT_APP_SERVER}/books/${bookToDelete._id}`);
-      const deletedBook = response.data;
+      await axios.delete(`${process.env.REACT_APP_SERVER}/books/${bookToDelete._id}`);
+      const filteredBooks = this.state.books.filter(book => {
+        return book._id !== bookToDelete._id;
+      });
       this.setState({
-        books: this.state.books.filter(book => book._id !== deletedBook._id),
-      })
-    }
-    catch (error) {
-      console.log('we have an error: ', error.respose);
+        books: filteredBooks,
+      });
+    } catch (error) {
+      console.log('we have an error: ', error.response);
     }
   }
 
@@ -83,11 +84,13 @@ class BestBooks extends React.Component {
   render() {
     return (
       <>
-        <h2>My Essential Lifelong Learning &amp; Formation Shelf</h2>
-        <Button variant="primary" onClick={this.handleShow}>
+        <Container className="mb-3 mt-3 d-flex flex-column justify-content-center align-items-center">
+          <h2>My Essential Lifelong Learning &amp; Formation Shelf</h2>
+        <Button className="mt-2" variant="primary" onClick={this.handleShow}>
           Add a Book
         </Button>
-        {this.state.show && 
+        </Container>
+        {this.state.show &&
           <BookFormModal 
             show={this.state.show} 
             handleClose={this.handleClose} 
