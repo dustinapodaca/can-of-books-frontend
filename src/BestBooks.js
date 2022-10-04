@@ -51,9 +51,9 @@ class BestBooks extends React.Component {
   
   deleteBook = async (bookToDelete) => {
     try {
-      await axios.delete(`${process.env.REACT_APP_SERVER}/books/${bookToDelete._id}`);
+      await axios.delete(`${process.env.REACT_APP_SERVER}/books/${bookToDelete}`);
       const filteredBooks = this.state.books.filter(book => {
-        return book._id !== bookToDelete._id;
+        return book._id !== bookToDelete;
       });
       this.setState({
         books: filteredBooks,
