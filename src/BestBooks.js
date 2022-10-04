@@ -1,17 +1,67 @@
 import React from 'react';
 import axios from 'axios';
-import { Carousel } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container } from 'react-bootstrap';
+import BookFormModal from './components/BookFormModal';
+import BookCarousel from './components/BookCarousel';
 
 class BestBooks extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      books: []
+      books: [],
+      show: false,
     }
   }
+
+  handleShow = () => {
+    this.setState({
+      show: true,
+    })
+  }
+
+  handleClose = () => {
+    this.setState({
+      show: false,
+    })
+  }
+
+  handleSubmit = async (e) => {
+    e.preventDefault();
+    this.addBook({
+      title: e.target.title.value,
+      description: e.target.description.value,
+      status: e.target.status.value,
+    });
+  }
+
+  addBook = async (bookInfo) => {
+    try {
+      const response = await axios.post(`${process.env.REACT_APP_SERVER}/books`, bookInfo);
+      const newBook = response.data;
+      this.setState({
+        books: [...this.state.books, newBook],
+      })
+    }
+    catch (error) {
+      console.log(error);
+    }
+    this.handleClose();
+  }
   
+  deleteBook = async (bookToDelete) => {
+    try {
+      const response = await axios.delete(`${process.env.REACT_APP_SERVER}/books/${bookToDelete._id}`);
+      const deletedBook = response.data;
+      this.setState({
+        books: this.state.books.filter(book => book._id !== deletedBook._id),
+      })
+    }
+    catch (error) {
+      console.log('we have an error: ', error.respose);
+    }
+  }
+
   /* TODO: Make a GET request to your API to fetch all the books from the database  */
   
   getBooks = async () => {
@@ -34,31 +84,21 @@ class BestBooks extends React.Component {
     return (
       <>
         <h2>My Essential Lifelong Learning &amp; Formation Shelf</h2>
-
+        <Button variant="primary" onClick={this.handleShow}>
+          Add a Book
+        </Button>
+        {this.state.show && 
+          <BookFormModal 
+            show={this.state.show} 
+            handleClose={this.handleClose} 
+            handleSubmit={this.handleSubmit} 
+          />
+        }
         {this.state.books.length ? (
-          <Container>
-            <Carousel className='h-50 rounded-bottom mb-5 bg-dark rounded'>
-              {this.state.books.map((book) => {
-                return (
-                  <Carousel.Item>
-                    <>
-                      <div className="pb-5 mb-5">
-                        <img className="d-block w-50 mx-auto" src='https://www.nirah.com/images/item-placeholder.svg?id=498f4e96baf0bbbc9351' alt={book.title} />
-                      </div>
-                    </>
-                    <Carousel.Caption id="carouselText" className='bg-dark mx-auto bg-opacity-75 rounded-bottom'>
-                      <>
-                        <div>
-                          <h3>{book.title}</h3>
-                          <p>{book.description}</p>
-                          <p>{book.status}</p>
-                        </div>                     
-                      </>
-                    </Carousel.Caption>
-                  </Carousel.Item>
-                )})}
-            </Carousel>
-          </Container>
+          <BookCarousel
+            books={this.state.books}
+            deleteBook={this.deleteBook}
+          />
         ) : (
           <p>There are no books in the database.</p>
         )}
