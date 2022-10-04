@@ -15,7 +15,7 @@ class BookCarousel extends React.Component {
                     <img className="d-block w-50 mx-auto" src='https://www.nirah.com/images/item-placeholder.svg?id=498f4e96baf0bbbc9351' alt={book.title} />
                   </div>
                 </>
-                <Carousel.Caption id="carouselText" className='bg-dark mx-auto bg-opacity-75 rounded-bottom'>
+                <Carousel.Caption id="carouselText" className='bg-dark mx-auto bg-opacity-50 rounded-bottom'>
                   <>
                     <div>
                       <h3>{book.title}</h3>
@@ -23,6 +23,7 @@ class BookCarousel extends React.Component {
                       <p>{book.status}</p>
                     </div>
                     <Button 
+                      className="mb-3 p-1 px-3"
                       variant="danger" 
                       onClick={() => this.props.deleteBook(book._id)}
                       >Delete Book
