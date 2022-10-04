@@ -1,7 +1,7 @@
 # Can of Books
 
-**Authors**: Maximo Vincente Mejia, Dustin Apodaca
-**Version**: 1.0.1
+- **Authors**: Maximo Vincente Mejia, Dustin Apodaca
+- **Version**: 1.0.1
 
 ## Overview
 
