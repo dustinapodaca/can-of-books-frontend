@@ -23,11 +23,20 @@ class BookFormModal extends React.Component {
                 </Form.Group>
 
                 <Form.Group className="mb-3">
-                  <Form.Label>Description</Form.Label>
+                  <Form.Label>Author</Form.Label>
                   <Form.Control 
                     type="text" 
-                    placeholder="Enter Book Description" 
-                    name="description" 
+                    placeholder="Enter Name of Author" 
+                    name="author" 
+                  />
+                </Form.Group>
+
+                <Form.Group className="mb-3">
+                  <Form.Label>Description</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter Book Description"
+                    name="description"
                   />
                 </Form.Group>
 

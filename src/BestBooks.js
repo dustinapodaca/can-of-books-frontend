@@ -30,6 +30,7 @@ class BestBooks extends React.Component {
     e.preventDefault();
     this.addBook({
       title: e.target.title.value,
+      author: e.target.author.value,
       description: e.target.description.value,
       status: e.target.status.value,
     });

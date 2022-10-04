@@ -19,6 +19,7 @@ class BookCarousel extends React.Component {
                   <>
                     <div>
                       <h3>{book.title}</h3>
+                      <p>{book.author}</p>
                       <p>{book.description}</p>
                       <p>{book.status}</p>
                     </div>
