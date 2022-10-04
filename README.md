@@ -25,11 +25,13 @@ An application  to track what books have impacted you, and what's recommended to
 
 ## Architecture
 
-JavaScript, React, Node.js, Express, MongoDB, Mongoose
+JavaScript, React, Node.js, Express, MongoDB, Mongoose, Bootstrap, React Bootstrap
 
 ## Change Log
 
-10-03-2022 - Application can successfully recieve all books requested from server as JSON and render it in a carousel component
+- 10-03-2022 - Application can successfully recieve all books requested from server as JSON and render it in a carousel component
+
+- 10-04-2022 - App can successfully add a book to the database and render it in the carousel component. The app can also now delete any book from the database and remove it from the carousel component.
 
 ## Time Estimate
 
@@ -39,11 +41,23 @@ JavaScript, React, Node.js, Express, MongoDB, Mongoose
 - ***Finish Time:*** 5:03pm EST
 - ***Actual time needed:*** 1hr 3min
 
-- ***Name of Feature:*** Render requested book collection in a Carousel component
+- ***Name of Feature:*** Frontend - Render requested book collection in a Carousel component
 - ***Estimate of time needed to complete:*** 2 hours
 - ***Start Time:*** 4:00pm EST
 - ***Finish Time:*** 5:42pm EST
 - ***Actual time needed:*** 1hr 42min
+
+- ***Name of Feature:*** Backend - Add a book using POST to the database on MongoDB.
+- ***Estimate of time needed to complete:*** 1.5 hour
+- ***Start Time:*** 4:00pm EST
+- ***Finish Time:*** 5:55pm EST
+- ***Actual time needed:*** 1hr 55min
+
+- ***Name of Feature:*** Frontend - Add a book or delete a book from the carousel component.
+- ***Estimate of time needed to complete:*** 2 hours
+- ***Start Time:*** 4:00pm EST
+- ***Finish Time:*** 5:55pm EST
+- ***Actual time needed:*** 1hr
 
 ## Cooperation Plan
 
