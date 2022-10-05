@@ -7,27 +7,27 @@ class BookFormModal extends React.Component {
     return (
       <>
         <Container>
-          <Modal show={this.props.show} onHide={this.props.handleClose}>
+          <Modal show={this.props.showUpdate} onHide={this.props.handleClose}>
             <Modal.Header closeButton>
-              <Modal.Title>Add a Book</Modal.Title>
+              <Modal.Title>Update Book</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <Form onSubmit={this.props.handleAddSubmit}>
+              <Form onSubmit={this.props.handleUpdateSubmit}>
                 <Form.Group className="mb-3">
                   <Form.Label>Title</Form.Label>
-                  <Form.Control 
-                    type="text" 
-                    placeholder="Enter Book Title" 
-                    name="title" 
+                  <Form.Control
+                    type="text"
+                    placeholder={this.props.selectedBook.title}
+                    name="title"
                   />
                 </Form.Group>
 
                 <Form.Group className="mb-3">
                   <Form.Label>Author</Form.Label>
-                  <Form.Control 
-                    type="text" 
-                    placeholder="Enter Name of Author" 
-                    name="author" 
+                  <Form.Control
+                    type="text"
+                    placeholder={this.props.selectedBook.author}
+                    name="author"
                   />
                 </Form.Group>
 
@@ -35,13 +35,13 @@ class BookFormModal extends React.Component {
                   <Form.Label>Description</Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder="Enter Book Description"
+                    placeholder="Enter A New Book Description"
                     name="description"
                   />
                 </Form.Group>
 
                 <Form.Group className="mb-3">
-                  <Form.Label>Book Status</Form.Label>
+                  <Form.Label>Update Book Status</Form.Label>
                   <Form.Select id="status" name="status">
                     <option value="Available">Available</option>
                     <option value="Low Stock">Low Stock</option>
@@ -50,7 +50,7 @@ class BookFormModal extends React.Component {
                 </Form.Group>
 
                 <Button variant="primary" type="submit">
-                  Add Book
+                  Update Book
                 </Button>
               </Form>
             </Modal.Body>
