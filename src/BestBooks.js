@@ -4,13 +4,16 @@ import { Container, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import BookFormModal from './components/BookFormModal';
 import BookCarousel from './components/BookCarousel';
+import UpdateBookFormModal from './components/UpdateBookFormModal';
 
 class BestBooks extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       books: [],
+      selectedBook: {},
       show: false,
+      showUpdate: false,
     }
   }
 
@@ -20,13 +23,21 @@ class BestBooks extends React.Component {
     })
   }
 
-  handleClose = () => {
+  handleShowUpdate = (selectedBook) => {
     this.setState({
-      show: false,
+      showUpdate: true,
+      selectedBook: selectedBook,
     })
   }
 
-  handleSubmit = async (e) => {
+  handleClose = () => {
+    this.setState({
+      show: false,
+      showUpdate: false,
+    })
+  }
+
+  handleAddSubmit = async (e) => {
     e.preventDefault();
     this.addBook({
       title: e.target.title.value,
@@ -78,6 +89,40 @@ class BestBooks extends React.Component {
     }
   }
 
+  //Update Book
+
+  handleUpdateSubmit = async (e) => {
+    e.preventDefault();
+    this.updateBook({
+      title: e.target.title.value || this.state.selectedBook.title,
+      author: e.target.author.value || this.state.selectedBook.author,
+      description: e.target.description.value || this.state.selectedBook.description,
+      status: e.target.status.value || this.state.selectedBook.status,
+      _id: this.state.selectedBook._id,
+      __v: this.state.selectedBook.__v,
+    });
+  }
+
+  updateBook = async (bookToUpdate) => {
+    try {
+      const url = `${process.env.REACT_APP_SERVER}/books/${bookToUpdate._id}`;
+      const response = await axios.put(url, bookToUpdate);
+      const updatedBook = response.data;
+      const updatedBookArr = this.state.books.map(book => {
+        return book._id === updatedBook.data._id ? updatedBook.data : book;
+      
+      });
+      this.setState({
+        books: updatedBookArr,
+      });
+    } catch (error) {
+      console.log('we have an error: ', error.response);
+    }
+    this.handleClose();
+  }
+
+  // component did mount
+
   componentDidMount() {
     this.getBooks();
   }
@@ -92,14 +137,27 @@ class BestBooks extends React.Component {
         </Button>
         </Container>
         {this.state.show &&
-          <BookFormModal 
-            show={this.state.show} 
-            handleClose={this.handleClose} 
-            handleSubmit={this.handleSubmit} 
-          />
+          <>
+            <BookFormModal 
+              show={this.state.show} 
+              handleClose={this.handleClose} 
+              handleAddSubmit={this.handleAddSubmit} 
+            />
+          </>
+        }
+        {this.state.showUpdate &&
+          <>
+            <UpdateBookFormModal
+              showUpdate={this.state.showUpdate}
+              handleClose={this.handleClose}
+              handleUpdateSubmit={this.handleUpdateSubmit}
+              selectedBook={this.state.selectedBook}
+            />
+          </>
         }
         {this.state.books.length ? (
           <BookCarousel
+            handleShow={this.handleShowUpdate}
             books={this.state.books}
             deleteBook={this.deleteBook}
           />

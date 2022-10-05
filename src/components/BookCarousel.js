@@ -3,6 +3,13 @@ import { Carousel, Container, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 class BookCarousel extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showUpdate: false,
+    }
+  }
+
   render() {
     return (
       <Container>
@@ -29,6 +36,13 @@ class BookCarousel extends React.Component {
                       onClick={() => this.props.deleteBook(book._id)}
                       >Delete Book
                     </Button>
+                    <Button
+                      className="mb-3 p-1 px-3"
+                      variant="warning"
+                      onClick={() => this.props.handleShowUpdate(book)}
+                    >Update Book
+                    </Button>
+                    
                   </>
                 </Carousel.Caption>
               </Carousel.Item>
