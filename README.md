@@ -1,6 +1,8 @@
 # Can of Books
 
-- **Authors**: Maximo Vincente Mejia, Dustin Apodaca
+- **Authors**:
+  - Dustin Apodaca
+  - Maximo Vincente Mejia
 - **Version**: 1.0.1
 
 ## Overview
@@ -33,6 +35,8 @@ JavaScript, React, Node.js, Express, MongoDB, Mongoose, Bootstrap, React Bootstr
 
 - 10-04-2022 - App can successfully add a book to the database and render it in the carousel component. The app can also now delete any book from the database and remove it from the carousel component.
 
+- 10-05-2022 - App can successfully update a book to the database using a new form component on the front end and re-render it in the carousel component. The backend successfully updates the database to reflect the changes.
+
 ## Time Estimate
 
 - ***Name of Feature:*** Backend - Return Books Collection as JSON to Client
@@ -58,6 +62,18 @@ JavaScript, React, Node.js, Express, MongoDB, Mongoose, Bootstrap, React Bootstr
 - ***Start Time:*** 4:00pm EST
 - ***Finish Time:*** 5:55pm EST
 - ***Actual time needed:*** 1hr
+
+- ***Name of Feature:*** Backend - Update a book using PUT to the database on MongoDB.
+- ***Estimate of time needed to complete:*** 1.5 hour
+- ***Start Time:*** 4:00pm EST
+- ***Finish Time:*** 5:42pm EST
+- ***Actual time needed:*** 1hr 42min
+
+- ***Name of Feature:*** Frontend - Add an update book feature that initializes a form to take in information to update a selected book.
+- ***Estimate of time needed to complete:*** 2 hours
+- ***Start Time:*** 4:00pm EST
+- ***Finish Time:*** 5:42pm EST
+- ***Actual time needed:*** 1hr 42min
 
 ## Cooperation Plan
 
