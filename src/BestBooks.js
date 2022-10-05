@@ -108,6 +108,7 @@ class BestBooks extends React.Component {
       const url = `${process.env.REACT_APP_SERVER}/books/${bookToUpdate._id}`;
       const response = await axios.put(url, bookToUpdate);
       const updatedBook = response.data;
+      console.log(updatedBook);
       const updatedBookArr = this.state.books.map(book => {
         return book._id === updatedBook.data._id ? updatedBook.data : book;
       
@@ -118,6 +119,7 @@ class BestBooks extends React.Component {
     } catch (error) {
       console.log('we have an error: ', error.response);
     }
+    this.componentDidMount();
     this.handleClose();
   }
 
@@ -157,7 +159,7 @@ class BestBooks extends React.Component {
         }
         {this.state.books.length ? (
           <BookCarousel
-            handleShow={this.handleShowUpdate}
+            handleShowUpdate={this.handleShowUpdate}
             books={this.state.books}
             deleteBook={this.deleteBook}
           />

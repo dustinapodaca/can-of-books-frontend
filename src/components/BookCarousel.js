@@ -3,12 +3,6 @@ import { Carousel, Container, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 class BookCarousel extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showUpdate: false,
-    }
-  }
 
   render() {
     return (

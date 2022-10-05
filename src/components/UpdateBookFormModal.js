@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Modal, Form, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-class BookFormModal extends React.Component {
+class UpdateBookFormModal extends React.Component {
   render() {
     return (
       <>
@@ -66,4 +66,4 @@ class BookFormModal extends React.Component {
   }
 }
 
-export default BookFormModal;
+export default UpdateBookFormModal;
